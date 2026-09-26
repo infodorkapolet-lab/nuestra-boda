@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Nos Casamos!</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fcf8f5;
+            color: #4a4a4a;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .card {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        h1 { font-size: 2.2em; color: #8b5e3c; margin-bottom: 5px; }
+        p { font-size: 1.1em; line-height: 1.6; }
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        .timer div {
+            background: #f4ece1;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #25d366;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        .btn-map {
+            background-color: #8b5e3c;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>¡Nos Casamos!</h1>
+    <p>Te invitamos a compartir con nosotros este día tan especial.</p>
+    
+    <h3>Faltan:</h3>
+    <div class="timer">
+        <div><span id="days">0</span><br>Días</div>
+        <div><span id="hours">0</span><br>Hs</div>
+        <div><span id="minutes">0</span><br>Min</div>
+    </div>
+
+    <p><strong>Fecha:</strong> 15 de Noviembre de 2026</p>
+    <p><strong>Lugar:</strong> Jardín de Eventos "Las Rosas"</p>
+
+    <a class="btn btn-map" href="https://maps.google.com" target="_blank">Ver Ubicación en Mapa</a>
+    <br>
+    <a class="btn" href="https://wa.me/51999999999?text=Hola,%20confirmo%20mi%20asistencia%20a%20la%20boda" target="_blank">Confirmar Asistencia (RSVP)</a>
+</div>
+
+<script>
+    // Configura aquí la fecha del evento (Año, Mes-1, Día)
+    const eventDate = new Date(2026, 10, 15).getTime();
+
+    const countdown = setInterval(() => {
+        const now = new Date().getTime();
+        const difference = eventDate - now;
+
+        if (difference < 0) {
+            clearInterval(countdown);
+            document.querySelector('.timer').innerHTML = "¡Es hoy!";
+            return;
+        }
+
+        document.getElementById('days').innerText = Math.floor(difference / (1000 * 60 * 60 * 24));
+        document.getElementById('hours').innerText = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById('minutes').innerText = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    }, 1000);
+</script>
+
+</body>
+</html>
